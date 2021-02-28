@@ -1,0 +1,97 @@
+:root {
+    --color-white: #fff;
+    --color-moderate-blue: #538fbe;
+    --color-dark-blue: #2d6898;
+    --color-blue-bottom-one: rgb(97,155,203);
+    --color-blue-bottom-zero: rgb(73,132,180);
+    --color-black-transparency-five: rgba(0,0,0,0.5);
+    --color-black-transparency-four: rgba(0,0,0,0.4);
+    --color-dark-moderate-blue: #2b638f;
+    --color-white-transparency-three: rgba(255,255,255,0.3);
+    --color-white-transparency-five: rgba(255,255,255,0.5);
+    --color-blue-bottom-active-zero:  rgb(88,154,204);
+    --color-blue-bottom-active-one:  rgb(90,150,199);
+    --color-darck-grey:#999;
+}
+
+.square {
+    background:var(--color-white);
+    border: 1px solid var(--color-darck-grey);
+    float: left;
+    font-size: 50px;
+    font-weight: bold;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 80px;
+    line-height: 80px;
+    height: 80px;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--color-white);
+    font-weight: bold;
+    background-color: var(--color-moderate-blue);
+    margin: 10px;
+    border: 1px solid var(--color-dark-blue);
+    background-image: linear-gradient(bottom, var(--color-blue-bottom-zero) 0%, var(--color-blue-bottom-one) 100%);
+    background-image: -o-linear-gradient(bottom, var(--color-blue-bottom-zero) 0%,  var(--color-blue-bottom-one) 100%);
+    background-image: -moz-linear-gradient(bottom, var(--color-blue-bottom-zero) 0%,  var(--color-blue-bottom-one) 100%);
+    background-image: -webkit-linear-gradient(bottom, var(--color-blue-bottom-zero) 0%,  var(--color-blue-bottom-one) 100%);
+    background-image: -ms-linear-gradient(bottom, var(--color-blue-bottom-zero) 0%,  var(--color-blue-bottom-one) 100%);
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, var(--color-blue-bottom-zero)),
+        color-stop(1, var(--color-blue-bottom-one))
+    );
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    text-shadow: 0px -1px 0px var(--color-black-transparency-five);
+    -webkit-box-shadow: 0px 6px 0px var(--color-dark-moderate-blue), 0px 3px 15px var(--color-black-transparency-four), inset 0px 1px 0px var(--color-white-transparency-three), inset 0px 0px 3px var(--color-white-transparency-five);
+    -moz-box-shadow: 0px 6px 0px var(--color-dark-moderate-blue), 0px 3px 15px var(--color-black-transparency-four), inset 0px 1px 0px var(--color-white-transparency-three), inset 0px 0px 3px var(--color-white-transparency-five);
+    box-shadow: 0px 6px 0px var(--color-dark-moderate-blue), 0px 3px 15px var(--color-black-transparency-four), inset 0px 1px 0px var(--color-white-transparency-three), inset 0px 0px 3px var(--color-white-transparency-five);
+}
+.square:active {
+    background-image: linear-gradient(bottom, var(--color-blue-bottom-active-zero) 0%, var(--color-blue-bottom-active-one) 100%);
+    background-image: -o-linear-gradient(bottom, var(--color-blue-bottom-active-zero) 0%, var(--color-blue-bottom-active-one) 100%);
+    background-image: -moz-linear-gradient(bottom, var(--color-blue-bottom-active-zero) 0%, var(--color-blue-bottom-active-one) 100%);
+    background-image: -webkit-linear-gradient(bottom, var(--color-blue-bottom-active-zero) 0%, var(--color-blue-bottom-active-one) 100%);
+    background-image: -ms-linear-gradient(bottom, var(--color-blue-bottom-active-zero) 0%, var(--color-blue-bottom-active-one) 100%);
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, var(--color-blue-bottom-active-zero)),
+        color-stop(1, var(--color-blue-bottom-active-one))
+    );
+}
+
+   /* Board */
+.board-row:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+   /* Game  */
+.game {
+    display: flex;
+    flex-direction: row;
+}
+   /* Game Info  */
+ul {
+    padding-left: 30px;
+}
+.game-info {
+    margin-left: 20px;
+}
+.status {
+    margin-bottom: 10px;
+}
+
+.game-history {
+    margin: 20px;
+    text-align: center;
+}
