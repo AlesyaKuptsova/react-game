@@ -259,8 +259,24 @@ class TicTacToeGame extends Component {
   )}
 
   handleKeyPress(event) {
-    if (event.key === 'n') {
+    const positionKeys = {
+      '1': 6,
+      '2': 7,
+      '3': 8,
+      '4': 3,
+      '5': 4,
+      '6': 5,
+      '7': 0,
+      '8': 1,
+      '9': 2,
+    }
+    if (event.key === '.') {
       this.resetGame();
+    } else {
+      const key = positionKeys[event.key];
+      if (key !== undefined) {
+        this.setMove(key);
+      }
     }
   }
 
