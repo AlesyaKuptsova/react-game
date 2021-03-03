@@ -3,6 +3,50 @@ import Board from './Board';
 import '../css/Game.css';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
+import step from '../assets/audio/videogame.mp3';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
+import VolumeDown from '@material-ui/icons/VolumeDown';
+import VolumeUp from '@material-ui/icons/VolumeUp';
+
+const audio = new Audio(step);
+
+const useStyles = makeStyles({
+  root: {
+    width: 200,
+  },
+});
+
+function SoundSlider() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(30);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    audio.volume = newValue/100;
+  };
+
+  return (
+    <div className={classes.root}>
+      <Typography id="continuous-slider" gutterBottom className="music_volume">
+        Sound volume
+      </Typography>
+      <Grid container spacing={2}>
+        <Grid item>
+          <VolumeDown />
+        </Grid>
+        <Grid item xs>
+          <Slider value={value} onChange={handleChange} aria-labelledby="continuous-slider" />
+        </Grid>
+        <Grid item>
+          <VolumeUp  />
+        </Grid>
+      </Grid>
+    </div>
+  );
+}
 
 const initHistory = [{
     squares: Array(9).fill(null),
@@ -25,7 +69,7 @@ const GameInfo = (props) => {
 
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = `The winner is ${winner} !`;
   } else {
     const currentPlayerIdx = stepNumber%2;
     status = 'Next player: ' + (currentPlayerIdx === 0 ? 'X' : 'O');
@@ -70,7 +114,9 @@ class TicTacToeGame extends Component {
   constructor() {
     super();
     this.state = initState;
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
+
   jumpTo(step) {
     this.setState({
       stepNumber: step,
@@ -142,7 +188,7 @@ class TicTacToeGame extends Component {
     let nextWinner = calculateWinner(squares);
 
     if (!nextWinner && !hasEmptyIndex) {
-      nextWinner = "Tie!";
+      nextWinner = "no one";
     }
 
     this.setState({
@@ -152,8 +198,9 @@ class TicTacToeGame extends Component {
       stepNumber: history.length,
       winner: nextWinner,
     });
-
     setTimeout(() => {this.handleStep()});
+    audio.play();
+    audio.currentTime = 0;
   }
 
   handleClick(i) {
@@ -175,16 +222,12 @@ class TicTacToeGame extends Component {
 
     const current = history[stepNumber];
 
-    if (winner) {
-      setTimeout(() => {this.resetGame()}, 2000);
-    }
-
   const currentPlayerIdx = stepNumber%2;
   const player = currentPlayerIdx===0 ? "X" : "O";
 
   return (
-  <div className="game">
-    <div className="game-board">
+  <div className="game" >
+    <div className="game-board"  onKeyPress={this.handleKeyPress}>
     <div>
       <BotSetup
         idx={0}
@@ -194,6 +237,7 @@ class TicTacToeGame extends Component {
         idx={1}
         game={this}
         />
+      <SoundSlider />
     </div>
       <Board
         player={player}
@@ -201,7 +245,8 @@ class TicTacToeGame extends Component {
         onClick={(i) => this.handleClick(i)}
       />
     </div>
-    <div>
+    <div >
+      <Button onClick={() => this.resetGame()}>New Game</Button>
       <GameInfo
         stepNumber={stepNumber}
         player={player}
@@ -212,6 +257,16 @@ class TicTacToeGame extends Component {
     </div>
   </div>
   )}
+
+  handleKeyPress(event) {
+    if (event.key === 'n') {
+      this.resetGame();
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyPress);
+  }
 }
 
 function emptyIndexies(squares) {

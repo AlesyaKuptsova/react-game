@@ -1,5 +1,7 @@
 :root {
   --color-black-transparency-five: rgba(0,0,0,0.5);
+  --color-ice-cold-transparency-four: rgba(148,245,227,0.4);
+  --color-white:#fff;
 }
 
 .App {
@@ -8,4 +10,23 @@
   min-width: 500px;
   margin: 10px auto;
   box-shadow: var(--color-black-transparency-five) 0px 5px 10px 0px;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  background-color: var(--color-white);
+}
+
+.body-color{
+  background: var(--color-ice-cold-transparency-four);
+}
+
+@media screen and (min-width: 1280px) {
+  .App {
+    width: 100%;
+    max-width: 1000px;
+    min-width: 800px;
+  }
 }

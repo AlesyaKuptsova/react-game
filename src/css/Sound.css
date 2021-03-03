@@ -1,0 +1,18 @@
+:root {
+    --color-blue:blue;
+}
+
+.music_play:hover {
+    color: var(--color-blue);
+    cursor: pointer;
+}
+
+.music_stop:hover {
+    color: var(--color-blue);
+    cursor: pointer;
+}
+
+.music_volume {
+    padding-left: 10px;
+    padding-top: 10px;
+}
