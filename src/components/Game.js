@@ -110,6 +110,7 @@ const BotSetup = (props) => {
   )
 }
 
+/* https://reactjs.org/tutorial/tutorial.html - this was used as a reference for the implementation */
 class TicTacToeGame extends Component {
   constructor() {
     super();
